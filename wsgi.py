@@ -1,14 +1,15 @@
 from flask import Flask
-import urllib2
+import urllib3
 application = Flask(__name__)
 
 
 @application.route("/<string:test>/")
 def hello(test):
-    request = urllib2.Request("http://{}/web/services/students".format(test))
-    request.add_header('content-TYPE', 'application/x-www-form-urlencoded')
-    response = urllib2.urlopen(request)
-    return response.read()
+    http = urllib3.PoolManager()
+    request = http.request("GET", "http://{}/web/services/students".format(test))
+    # print(request.data.decode())
+
+    return request.data.decode()
 
 
 if __name__ == "__main__":
