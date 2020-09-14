@@ -12,5 +12,10 @@ def hello(test):
     return request.data.decode()
 
 
+@application.route("/test/test/")
+def hello2():
+    return "test"
+
+
 if __name__ == "__main__":
     application.run()
