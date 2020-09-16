@@ -3,10 +3,10 @@ import urllib3
 application = Flask(__name__)
 
 
-@application.route("/<string:test>/")
-def hello(test):
+@application.route("/")
+def hello():
     http = urllib3.PoolManager()
-    request = http.request("GET", "http://{}/web/services/students".format(test))
+    request = http.request("GET", "http://common1.iinthecloud.com:10258/web/services/fromCity")
     # request = http.request("GET", "http://www.baidu.com")
     # print(request.data.decode())
 
