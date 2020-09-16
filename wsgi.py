@@ -1,4 +1,5 @@
 from flask import Flask
+from json2html import *
 import urllib3
 application = Flask(__name__)
 
@@ -7,10 +8,19 @@ application = Flask(__name__)
 def hello():
     http = urllib3.PoolManager()
     request = http.request("GET", "http://common1.iinthecloud.com:10258/web/services/fromCity")
-    # request = http.request("GET", "http://www.baidu.com")
-    # print(request.data.decode())
 
-    return request.data.decode()
+    request2 = http.request("GET", "http://common1.iinthecloud.com:10258/web/services/ToCity")
+
+    input = request.data.decode()
+
+    input2 = request2.data.decode()
+
+    outputhtml = "<br /><b>Flight information application running in OpenShift Container Platform</b><br /><br />" \
+                 "<table>" \
+                 "<tr><td>{}</td><td>{}</td></tr>" \
+                 "</table>".format(json2html.convert(json=input), json2html.convert(json=input2))
+
+    return outputhtml
 
 
 @application.route("/test/test/")

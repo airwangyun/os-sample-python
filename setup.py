@@ -6,5 +6,5 @@ setup(name='myFlaskApp',
       author='Wang Yun',
       author_email='cdlwangy@cn.ibm.com',
       url='http://www.python.org/sigs/distutils-sig/',
-      install_requires=['Flask==1.1.2', 'urllib3==1.25.10'],
+      install_requires=['Flask==1.1.2', 'urllib3==1.25.10', 'json2html==1.3.0'],
      )
